@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive 3D Periodic Table</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@500;700;900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Animated Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Overlay UI Container -->
+  <div class="ui-layer">
+
+    <!-- Navbar / Controls -->
+    <header class="top-nav">
+      <div class="logo">
+        <h1 class="orbitron">ELEMENTAL<span class="highlight">3D</span></h1>
+      </div>
+
+      <div class="controls">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Search elements...">
+          <button id="search-btn">🔍</button>
+        </div>
+
+        <button id="toggle-view" class="btn outline" title="Toggle 2D/3D View">3D View</button>
+        <button id="start-quiz-btn" class="btn primary outline glow">Start Quiz</button>
+        <button id="theme-toggle" class="btn icon-btn" title="Toggle Light/Dark Theme">☀️</button>
+      </div>
+    </header>
+
+    <!-- Legend & Filters -->
+    <aside class="legend-panel">
+      <h3>Categories</h3>
+      <div id="category-filters" class="filter-list">
+        <!-- Injected via JS -->
+      </div>
+    </aside>
+
+    <!-- 3D Scene Wrapper -->
+    <main class="scene" id="scene">
+      <!-- 3D Camera / Container -->
+      <div class="table-container view-2d" id="table-container">
+        <!-- Elements injected via JS -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="element-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content glass" id="modal-card">
+      <button class="close-btn" id="close-modal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-symbol orbitron" id="modal-symbol">H</div>
+        <div class="modal-basic-info">
+          <h2 id="modal-name">Hydrogen</h2>
+          <p class="atomic-meta">Atomic Number: <span id="modal-number">1</span> | Mass: <span
+              id="modal-mass">1.008</span></p>
+          <span class="category-badge" id="modal-category">Nonmetal</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="info-group">
+          <strong>Electron Configuration:</strong>
+          <p id="modal-config" class="mono">1s1</p>
+        </div>
+        <div class="info-group">
+          <strong>Description:</strong>
+          <p id="modal-desc">Hydrogen is the chemical element with the symbol H and atomic number 1.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" target="_blank" rel="noopener noreferrer" id="modal-wiki" class="btn glow primary">Learn More on
+          Wikipedia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quiz-modal" class="modal hidden">
+    <div class="modal-backdrop" id="quiz-backdrop"></div>
+    <div class="modal-content glass quiz-container">
+      <button class="close-btn" id="close-quiz">&times;</button>
+      <div id="quiz-setup">
+        <h2 class="orbitron">Periodic Element Quiz</h2>
+        <p>Test your knowledge of the universe's building blocks.</p>
+        <button id="begin-quiz-btn" class="btn primary glow" style="margin-top: 20px;">Start 10 Questions</button>
+      </div>
+
+      <div id="quiz-active" class="hidden">
+        <div class="quiz-header">
+          <span id="quiz-progress">Question 1/10</span>
+          <span id="quiz-score">Score: 0</span>
+        </div>
+        <div class="quiz-question">
+          <h3 id="question-text">What is the symbol for Hydrogen?</h3>
+        </div>
+        <div class="quiz-options" id="quiz-options">
+          <!-- Options injected via JS -->
+        </div>
+      </div>
+
+      <div id="quiz-result" class="hidden">
+        <h2 class="orbitron">Quiz Complete!</h2>
+        <div class="final-score">
+          <span id="final-score-val" class="highlight">8</span>/10
+        </div>
+        <p id="quiz-feedback">Great job!</p>
+        <button id="restart-quiz-btn" class="btn primary glow" style="margin-top: 20px;">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
